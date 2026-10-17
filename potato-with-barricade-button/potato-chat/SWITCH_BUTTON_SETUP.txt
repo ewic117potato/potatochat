@@ -1,0 +1,1 @@
+Website switch button: Click the button and enter the other site’s full URL once. It is saved in your browser. Right-click the button to change the URL later. URLs are per device/browser. Opened in a new tab.

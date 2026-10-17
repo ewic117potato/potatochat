@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0b0e18"><meta name="description" content="POTATO — private chats for your squad. Message, share images and never miss a ping."><link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icons/icon-192.png"><title>POTATO — Chat with your squad</title><link rel="stylesheet" href="/styles.css"><script defer src="/socket.io/socket.io.js"></script><script defer src="/app.js"></script></head>
+<body>
+<div id="app" class="app hidden">
+  <aside class="rail"><a class="brandmark" href="/" aria-label="Potato home">↗</a><button class="rail-icon active" title="Chats" aria-label="Chats">◈</button><a href="#" id="switch-site" data-destination="barricade" class="rail-icon" title="Play Barricade (right-click to change link)" aria-label="Play Barricade" style="display:grid;place-items:center;text-decoration:none">🎮</a><div class="rail-spacer"></div><button id="rail-settings" class="rail-icon" title="Settings" aria-label="Settings">⚙</button><div class="rail-avatar" id="rail-avatar">?</div></aside>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-top"><div class="eyebrow">YOUR SPACE <span class="status-dot"></span></div><div class="sidebar-heading">Messages <button class="icon-btn mobile-hide" id="notify-icon" title="Enable notifications" aria-label="Enable notifications">♧</button></div><p class="side-tagline">Your squad. One place.</p></div>
+    <div class="section-title"><span>YOUR ROOMS</span><button class="mini-btn" id="create-room" title="Create a chat">＋</button></div>
+    <div id="room-list" class="room-list"></div>
+    <button id="join-room" class="join-row"><span class="join-square">↳</span> Join with invite code <span class="join-arrow">→</span></button>
+    <div class="sidebar-bottom"><a href="#" id="switch-site-mobile" style="display:none">Play Barricade</a><div class="pro-tip">✦ <strong>Play together.</strong><br><span>Create a room, share a code and invite your friends.</span></div><button id="open-settings" class="profile"><div class="profile-avatar" id="profile-avatar">?</div><div class="profile-text"><strong id="profile-name">Guest</strong><small>Account & notifications</small></div><span class="profile-more">•••</span></button></div>
+  </aside>
+  <section class="workspace">
+    <header class="topbar"><button id="mobile-menu" class="icon-btn menu-btn" aria-label="Toggle chats">☰</button><div class="topbar-title"><div id="header-icon" class="hash">#</div><div><h1 id="header-name">Welcome to POTATO</h1><p id="header-subtitle">A better place to stay connected</p></div></div><div class="top-actions"><span id="connection-status" class="connection"><span class="online-circle"></span> Connecting…</span><button id="room-info" class="icon-btn" aria-label="Room details" title="Room details">ⓘ</button></div></header>
+    <div id="welcome" class="welcome"><div class="welcome-visual"><span class="welcome-orbit orbit-one"></span><span class="welcome-orbit orbit-two"></span><span class="welcome-symbol">↗</span><span class="floating-dot dot-a"></span><span class="floating-dot dot-b"></span></div><div class="welcome-eyebrow">STAY IN THE LOOP</div><h2>Better together.<br><em>Always.</em></h2><p>Messages, images, reactions and notifications — everything your friends need between matches.</p><div class="welcome-buttons"><button class="primary-btn" id="welcome-create">＋ &nbsp; Create a room</button><button class="secondary-btn" id="welcome-join">Join a room →</button></div><div class="feature-row"><div>⚡ <span>Realtime</span></div><div>▧ <span>Image sharing</span></div><div>◉ <span>Push alerts</span></div></div></div>
+    <div id="chat" class="chat hidden"><div id="chat-scroll" class="chat-scroll"><div id="history-wrap" class="history-wrap"><button id="older" class="older-btn hidden">Load older messages</button></div><div id="messages" class="messages"></div><div id="typing" class="typing"></div></div><div id="file-preview" class="file-preview hidden"><img id="file-thumb" alt="Image attachment preview"><div><strong id="file-label">Image</strong><small>Ready to send</small></div><button id="remove-file" class="icon-btn" title="Remove image">×</button></div><form id="composer" class="composer"><label for="upload-image" class="attach-btn" title="Add photo" aria-label="Attach image">＋</label><input id="upload-image" type="file" accept="image/jpeg,image/png,image/webp,image/gif,image/avif" hidden><textarea id="message-input" rows="1" maxlength="2000" placeholder="Message your squad…" aria-label="Write message"></textarea><button id="send-message" class="send-btn" title="Send message" aria-label="Send message">➤</button></form><div class="compose-caption">↵ Enter to send <span>·</span> Shift + Enter for a new line <span>·</span> Images up to 7 MB</div></div>
+  </section>
+</div>
+<div id="auth" class="auth"><div class="auth-accent"></div><div class="auth-card"><div class="auth-logo">↗ <span>POTATO</span></div><div class="pill">YOUR SQUAD. ALWAYS CONNECTED.</div><h1>Good conversations<br><em>start here.</em></h1><p>Private group chats, images and notifications — a home base for your crew.</p><form id="register-form"><label for="nickname">CHOOSE YOUR NICKNAME</label><input id="nickname" minlength="2" maxlength="25" placeholder="e.g. PotatoKing" autocomplete="nickname" required><button class="primary-btn full" type="submit">Enter POTATO <span>→</span></button></form><div class="auth-divider"><span>Already have an account?</span></div><button class="restore-btn" id="restore-toggle">Restore with your account key →</button><form id="restore-form" class="hidden"><label for="restore-key">YOUR PRIVATE ACCOUNT KEY</label><input id="restore-key" placeholder="Paste your 64-character key" autocomplete="off"><button class="secondary-btn full" type="submit">Restore account</button></form><div id="auth-error" class="error-text"></div><div class="auth-foot">No email required. Save your account key in Settings so you can use another device.</div></div></div>
+<div id="modal-wrap" class="modal-wrap hidden"><div class="modal-backdrop" id="modal-backdrop"></div><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><div><div class="eyebrow">POTATO / CONTROL CENTER</div><h2 id="modal-title">Settings</h2></div><button id="close-modal" class="icon-btn">×</button></div><div id="modal-body" class="modal-body"></div></div></div>
+<div id="image-overlay" class="image-overlay hidden"><button id="close-image" aria-label="Close image">×</button><img id="large-image" alt="Full-sized message image"></div>
+<div id="toast" role="status" aria-live="polite" class="toast hidden"></div>
+
+<script>
+(function(){
+  const button=document.getElementById('switch-site');
+  if(!button)return;
+  const key=button.dataset.destination==='potato'?'potato_site_url':'barricade_site_url';
+  const label=button.dataset.destination==='potato'?'POTATO':'Barricade';
+  button.addEventListener('click',function(event){
+    event.preventDefault();
+    let address=localStorage.getItem(key);
+    if(!address){
+      const input=prompt('Enter your '+label+' website URL (you only need to do this once):','https://');
+      if(!input)return;
+      try{const url=new URL(input.trim());if(!['https:','http:'].includes(url.protocol))throw Error('protocol');address=url.href;localStorage.setItem(key,address)}
+      catch(e){alert('Please enter a valid website URL beginning with https://');return}
+    }
+    window.open(address,'_blank','noopener,noreferrer');
+  });
+  button.addEventListener('contextmenu',function(event){
+    event.preventDefault();
+    if(confirm('Change the saved '+label+' website link?')){localStorage.removeItem(key);button.click()}
+  });
+})();
+</script>
+</body></html>

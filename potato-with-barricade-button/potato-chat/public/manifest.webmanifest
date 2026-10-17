@@ -1,0 +1,25 @@
+{
+  "name": "Potato \u2014 Chat with your squad",
+  "short_name": "Potato",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0b0e18",
+  "theme_color": "#0b0e18",
+  "description": "A private realtime chat for friends, games and squads.",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
